@@ -1,0 +1,62 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Engineer: Demetri Kostas
+// Create Date: 09/20/2024 03:19:44 PM
+// Design Name: 
+// Module Name: Adder_tb
+// Project Name: ECE128Lab3
+// Revision:
+// Revision 0.01 - File Created
+//////////////////////////////////////////////////////////////////////////////////
+
+/**
+module Adder_tb;
+    reg [1:0] A, B;
+    reg CI;
+    wire [6:0] seg;
+
+    two_bit_full_carry_lookahead_adder dut(A, B, CI, seg);
+
+    integer i;
+    integer j;
+    integer k;
+    initial begin
+        for (i=0; i<4; i=i+1)
+            begin
+            for (j=0; j<4; j=j+1)
+                begin
+                for (k=0; k<2; k=k+1)
+                    begin
+                        #10 A=i; B=j; CI=k;
+                    end
+                end
+            end
+            #10 $stop;    
+        end
+endmodule
+*/
+module Adder_1_tb;
+    reg [1:0] A, B;
+    reg CI;
+    wire [6:0] seg;
+
+    two_bit_full_ripple_adder dut(A, B, CI, seg);
+
+    integer i;
+    integer j;
+    integer k;
+    initial begin
+        for (i=3; i>=0; i=i-1)
+            begin
+            for (j=3; j>=0; j=j-1)
+                begin
+                for (k=1; k>=0; k=k-1)
+                    begin
+                        #10 A=i; B=j; CI=k;
+                    end
+                end
+            end
+            #10 $stop;    
+        end
+endmodule
+
